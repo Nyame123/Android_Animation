@@ -11,48 +11,85 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_first_fragment"
-        app:layout_constraintBottom_toTopOf="@id/moveBtn"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toTopOf="@id/lay_first"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/moveBtn"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/lay_first"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Move"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:weightSum="1.2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+        app:layout_constraintTop_toBottomOf="@id/textview_first">
 
-    <Button
-        android:id="@+id/scaleBtn"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/moveBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="0.4"
+            android:text="Translate Y" />
+
+        <Button
+            android:id="@+id/moveBtnX"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="0.4"
+            android:text="Translate X" />
+
+        <Button
+            android:id="@+id/cominedAnim"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="0.4"
+            android:text="Play Together" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lay_second"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Scale"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:weightSum="1.2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/moveBtn" />
+        app:layout_constraintTop_toBottomOf="@id/lay_first">
 
-    <Button
-        android:id="@+id/rotateBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rotate"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scaleBtn" />
+        <Button
+            android:id="@+id/scaleBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="0.4"
+            android:text="Scale" />
 
-    <Button
-        android:id="@+id/fadeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Fade"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rotateBtn" />
+        <Button
+            android:id="@+id/rotateBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="0.4"
+            android:text="Rotate" />
+
+        <Button
+            android:id="@+id/fadeBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="0.4"
+            android:text="Fade" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
