@@ -147,6 +147,7 @@ public class AnimationFragment extends Fragment implements View.OnClickListener 
         AnimatorSet animatorInflater = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(),R.animator.pivot_scale_animator);
         animatorInflater.setTarget(firstTextview);
         animatorInflater.start();
+
     }
 
     private void usingPropertyValueHolder() {

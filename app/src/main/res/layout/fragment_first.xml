@@ -34,6 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:stateListAnimator="@animator/animate_scale"
             android:layout_weight="0.4"
             android:text="Translate Y" />
 
@@ -42,6 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:stateListAnimator="@animator/animate_scale"
             android:layout_weight="0.4"
             android:text="Translate X" />
 
@@ -50,6 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:stateListAnimator="@animator/animate_scale"
             android:layout_marginRight="8dp"
             android:layout_weight="0.4"
             android:text="Play Together" />
@@ -70,6 +73,7 @@
         <Button
             android:id="@+id/scaleBtn"
             android:layout_width="0dp"
+            android:stateListAnimator="@animator/animate_scale"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_weight="0.4"
@@ -78,6 +82,7 @@
         <Button
             android:id="@+id/rotateBtn"
             android:layout_width="0dp"
+            android:stateListAnimator="@animator/animate_scale"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_weight="0.4"
@@ -86,6 +91,7 @@
         <Button
             android:id="@+id/fadeBtn"
             android:layout_width="0dp"
+            android:stateListAnimator="@animator/animate_scale"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
