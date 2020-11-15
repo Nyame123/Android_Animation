@@ -5,16 +5,16 @@
         <set >
             <objectAnimator android:propertyName="scaleX"
                 android:duration="@android:integer/config_shortAnimTime"
-                android:valueTo="1.2"
+                android:valueTo="1.1"
                 android:valueType="floatType"/>
             <objectAnimator android:propertyName="scaleY"
                 android:duration="@android:integer/config_shortAnimTime"
-                android:valueTo="1.2"
+                android:valueTo="1.1"
                 android:valueType="floatType"/>
             <objectAnimator
                 android:duration="@android:integer/config_shortAnimTime"
                 android:propertyName="translationZ"
-                android:valueTo="10"
+                android:valueTo="19"
                 android:valueType="floatType" />
         </set>
 
@@ -33,7 +33,7 @@
             <objectAnimator
                 android:duration="@android:integer/config_shortAnimTime"
                 android:propertyName="translationZ"
-                android:valueTo="2"
+                android:valueTo="10"
                 android:valueType="floatType" />
         </set>
     </item>

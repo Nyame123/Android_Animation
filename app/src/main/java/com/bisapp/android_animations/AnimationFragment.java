@@ -3,10 +3,19 @@ package com.bisapp.android_animations;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
+import android.transition.ChangeScroll;
+import android.transition.ChangeTransform;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +23,11 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 public class AnimationFragment extends Fragment implements View.OnClickListener {
@@ -28,6 +39,7 @@ public class AnimationFragment extends Fragment implements View.OnClickListener 
     private ObjectAnimator objectAnimator;
     private boolean isAnimationStarted;
     private AnimatorSet set;
+    private LinearLayout firstLay;
 
     @Override
     public View onCreateView(
@@ -47,6 +59,9 @@ public class AnimationFragment extends Fragment implements View.OnClickListener 
         scaleBtn = view.findViewById(R.id.scaleBtn);
         fadeBtn = view.findViewById(R.id.fadeBtn);
         rotateBtn = view.findViewById(R.id.rotateBtn);
+        firstLay = view.findViewById(R.id.lay_first);
+       /* LayoutTransition transition = ((LinearLayout)view.findViewById(R.id.lay_first)).setLayoutTransition(LayoutTransition.APPEARING);
+        transition.enableTransitionType(LayoutTransition.CHANGING);*/
 
         moveBtn.setOnClickListener(this);
         moveBtnX.setOnClickListener(this);
@@ -66,6 +81,8 @@ public class AnimationFragment extends Fragment implements View.OnClickListener 
         objectAnimator.setRepeatMode(ValueAnimator.REVERSE);
         objectAnimator.setRepeatCount(1);
         objectAnimator.start();
+
+
 
     }
 
@@ -160,6 +177,7 @@ public class AnimationFragment extends Fragment implements View.OnClickListener 
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -171,6 +189,7 @@ public class AnimationFragment extends Fragment implements View.OnClickListener 
                 } else {
                     moveTextviewOnYaxis();
                 }
+                enableTransitionsOn(firstLay);
                 break;
             case R.id.moveBtnX:
                 if (isAnimationStarted && objectAnimator != null) {
@@ -217,5 +236,14 @@ public class AnimationFragment extends Fragment implements View.OnClickListener 
                 break;
         }
 
+    }
+
+    private void enableTransitionsOn(ViewGroup viewGroup) {
+        //firstLay.setLayoutTransition(new LayoutTransition());
+        TransitionSet set = new TransitionSet();
+        set.addTransition(new Fade());
+        set.addTransition(new ChangeBounds());
+        TransitionManager.beginDelayedTransition(viewGroup, set);
+        playTogether.setVisibility(isAnimationStarted? View.VISIBLE: View.GONE);
     }
 }
