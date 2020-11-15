@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:drawable="@drawable/baseline_star_half_black_18dp"
+        android:maxLevel="4"  android:minLevel="1"/>
+
+    <item android:drawable="@drawable/baseline_star_black_18dp"
+        android:maxLevel="8" android:minLevel="6"/>
+</level-list>

@@ -7,6 +7,7 @@ import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.graphics.Path;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
@@ -88,12 +89,26 @@ public class AnimationFragment extends Fragment implements View.OnClickListener 
 
     private void moveTextviewOnXaxis() {
         isAnimationStarted = true;
-        objectAnimator = ObjectAnimator.ofFloat(firstTextview, "translationX", 0, 600);
-        objectAnimator.setDuration(2000)
-                .setInterpolator(new AccelerateDecelerateInterpolator());
+
+
+
+        /*objectAnimator = ObjectAnimator.ofFloat(firstTextview, "translationX", 0, 600);
+        objectAnimator.setDuration(2000);
+            objectAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         objectAnimator.setRepeatMode(ValueAnimator.REVERSE);
         objectAnimator.setRepeatCount(1);
-        objectAnimator.start();
+        objectAnimator.start();*/
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            Path path = new Path();
+            path.arcTo(0f, 0f, 1000f, 1000f, 270f, -180f, true);
+//            objectAnimator.setInterpolator(new PathInterpolator(path));
+            objectAnimator = ObjectAnimator.ofFloat(firstTextview, View.X, View.Y, path);
+            objectAnimator.setDuration(2000);
+            objectAnimator.setRepeatMode(ValueAnimator.REVERSE);
+            objectAnimator.setRepeatCount(1);
+            objectAnimator.start();
+        }
 
     }
 
