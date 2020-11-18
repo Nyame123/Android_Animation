@@ -34,6 +34,8 @@ class HomeFragment : Fragment(), CustomRecyclerView.BindViewsListener {
         val headers = mutableListOf<String>()
         headers.add("View Property Animation")
         headers.add("Drawable Animation")
+        headers.add("Zoom Animation")
+        headers.add("Transition Scene")
         category_recyclerview.setBindViewsListener(this)
         category_recyclerview.addModels(headers)
 
@@ -52,6 +54,10 @@ class HomeFragment : Fragment(), CustomRecyclerView.BindViewsListener {
                 navController.navigate(R.id.action_homeFragment_to_FirstFragment)
             else if (position == 1)
                 navController.navigate(R.id.action_homeFragment_to_SecondFragment)
+            else if (position == 2)
+                navController.navigate(R.id.action_homeFragment_to_zoomFragment)
+            else if (position == 3)
+                navController.navigate(R.id.action_homeFragment_to_transitionFragment)
         }
     }
 

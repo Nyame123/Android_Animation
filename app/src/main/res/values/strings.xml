@@ -9,4 +9,10 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="for_shared_dynamic_views">For shared dynamic views that you generate in your code,
+        use the View.setTransitionName() function to specify a common element name in both activities.</string>
+    <string name="logo_transition">LogoOne</string>
+    <string name="text_transition">text One</string>
+    <string name="frag_logo_transition">Fragment LogoOne</string>
+    <string name="frag_text_transition">Fragment text One</string>
 </resources>

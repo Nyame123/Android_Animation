@@ -9,13 +9,19 @@
         android:id="@+id/homeFragment"
         android:name="com.bisapp.android_animations.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
         <action
             android:id="@+id/action_homeFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_zoomFragment"
+            app:destination="@id/zoomFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_transitionFragment"
+            app:destination="@id/transitionFragment" />
     </fragment>
 
     <fragment
@@ -38,4 +44,22 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/zoomFragment"
+        android:name="com.bisapp.android_animations.ZoomFragment"
+        android:label="ZoomFragment"
+        tools:layout="@layout/fragment_zoom" />
+    <fragment
+        android:id="@+id/transitionFragment"
+        android:name="com.bisapp.android_animations.TransitionExFragment"
+        android:label="ZoomFragment"
+        tools:layout="@layout/fragment_transition" >
+        <action
+            android:id="@+id/action_transitionFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.bisapp.android_animations.SecondFragment"
+        android:label="SecondFragment" />
 </navigation>

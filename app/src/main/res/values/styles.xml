@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -10,6 +10,11 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowActivityTransitions" tools:targetApi="lollipop">true</item>
+      <!--  <item name="android:windowExitTransition" tools:targetApi="lollipop">@transition/slide_out</item>
+        <item name="android:windowEnterTransition" tools:targetApi="lollipop">@transition/slide_in</item>
+        <item name="android:windowSharedElementEnterTransition" tools:targetApi="lollipop">@transition/change_image_transform</item>
+        <item name="android:windowSharedElementExitTransition" tools:targetApi="lollipop">@transition/change_image_transform</item>-->
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
