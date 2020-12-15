@@ -11,6 +11,8 @@ import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,15 +22,22 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.ActivityNavigator;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.FragmentNavigator;
 import androidx.transition.ChangeImageTransform;
+
+import com.bisapp.android_animations.databinding.FragmentTransitionBinding;
+import com.google.android.material.transition.platform.MaterialSharedAxis;
+import com.google.android.material.transition.platform.MaterialContainerTransform;
+import com.google.android.material.transition.platform.MaterialElevationScale;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -43,6 +52,24 @@ public class TransitionExFragment extends Fragment {
     private TextView textView;
     private ImageView logo;
     private NavController navController;
+    private FragmentTransitionBinding fragmentBinding;
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MaterialContainerTransform transition = new MaterialContainerTransform();
+        transition.setAllContainerColors(getResources().getColor(android.R.color.white));
+        transition.setDuration(800);
+        transition.setDrawingViewId(R.id.nav_host_fragment);
+        /*transition.setAllContainerColors(getResources().getColor(android.R.color.white));
+        transition.setScrimColor(getResources().getColor(android.R.color.transparent));*/
+        setSharedElementEnterTransition(transition);
+
+        /*setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.X,true));
+        setReturnTransition(new MaterialSharedAxis(MaterialSharedAxis.X,false));*/
+
+    }
 
     @Override
     public View onCreateView(
@@ -50,13 +77,22 @@ public class TransitionExFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transition, container, false);
+        //return inflater.inflate(R.layout.fragment_transition, container, false);
+       fragmentBinding = FragmentTransitionBinding.inflate(inflater,container,false);
+       return fragmentBinding.getRoot();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void onViewCreated(@NonNull final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        logo = view.findViewById(R.id.logo);
-        textView = view.findViewById(R.id.text_view);
+
+//        sceneRoot.setTransitionGroup(true);
+
+        setExitTransition(new MaterialElevationScale(false));
+        setReenterTransition(new MaterialElevationScale(true));
+
+        logo = fragmentBinding.sceneInclude.logo;
+        textView = fragmentBinding.sceneInclude.textView;
         createScene(view);
 
         navController = Navigation.findNavController(view);
@@ -65,7 +101,7 @@ public class TransitionExFragment extends Fragment {
         final TransitionSet transitionSet = getTransitionSet();
 
         transitionStarted = false;
-        view.findViewById(R.id.goBtn).setOnClickListener(new View.OnClickListener() {
+        fragmentBinding.goBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 transitionStarted = !transitionStarted;
@@ -101,9 +137,16 @@ public class TransitionExFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.fragment:
+
+                       /* MaterialElevationScale scale = new MaterialElevationScale(false);
+                        //scale.setDuration(300);
+                        setExitTransition(scale);
+                        setReenterTransition(new MaterialElevationScale(true));*/
                         HashMap<View, String> map = new HashMap<>();
+
                         map.put(logo, getString(R.string.frag_logo_transition));
-                        map.put(textView, getString(R.string.frag_text_transition));
+                       // map.put(textView, getString(R.string.frag_text_transition));
+                       // map.put(fragmentBinding.getRoot(), getString(R.string.container));
 
                         FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
                                 .addSharedElements(map)
@@ -113,8 +156,8 @@ public class TransitionExFragment extends Fragment {
                         break;
                     case R.id.activity:
                         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-                                Pair.<View, String>create(logo,getString(R.string.frag_logo_transition)),
-                                Pair.<View, String>create(textView,getString(R.string.frag_text_transition)));
+                                Pair.<View, String>create(logo,getString(R.string.logo_transition)),
+                                Pair.<View, String>create(textView,getString(R.string.text_transition)));
 
                         ActivityNavigator.Extras extras1 = new ActivityNavigator.Extras.Builder()
                                 .setActivityOptions(options)
@@ -154,5 +197,15 @@ public class TransitionExFragment extends Fragment {
         secondScene = Scene.getSceneForLayout(sceneRoot, R.layout.second_scene, getContext());
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        MenuItemCompat.setShowAsAction(menu.add(""),MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        fragmentBinding = null;
+    }
 }

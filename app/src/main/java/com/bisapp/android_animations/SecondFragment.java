@@ -1,23 +1,10 @@
 package com.bisapp.android_animations;
 
-import android.app.ActivityOptions;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.transition.ChangeBounds;
-import android.transition.Fade;
-import android.transition.Scene;
-import android.transition.Slide;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
-import android.transition.TransitionManager;
-import android.transition.TransitionSet;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.transition.ChangeImageTransform;
 
-import org.jetbrains.annotations.NotNull;
+import com.google.android.material.transition.platform.MaterialContainerTransform;
+import com.google.android.material.transition.platform.MaterialElevationScale;
 
 public class SecondFragment extends Fragment {
 
@@ -36,7 +23,11 @@ public class SecondFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Transition transition = new ChangeBounds();
+        MaterialContainerTransform transition = new MaterialContainerTransform();
+        //transition.setAllContainerColors(getResources().getColor(android.R.color.background_dark));
+        transition.setDuration(800);
+        /*transition.setAllContainerColors(getResources().getColor(android.R.color.white));
+        transition.setScrimColor(getResources().getColor(android.R.color.transparent));*/
         setSharedElementEnterTransition(transition);
 
     }
